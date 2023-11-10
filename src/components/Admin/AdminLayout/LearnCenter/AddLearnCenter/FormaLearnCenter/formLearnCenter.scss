@@ -1,0 +1,43 @@
+.FormaLearnCenter {
+    padding: 20px;
+    margin-top: 5%;
+    &_form {
+      display: flex;
+      justify-content: space-between;
+      &_inputs {
+        width: 30%;
+        height: 400px;
+        &_imgUploud {
+          width: 166px;
+          height: 166px;
+          border-radius: 50%;
+          background-color: aliceblue;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin: 0 auto;
+          cursor: pointer;
+          align-items: center;
+          &_imgs {
+            //   margin: 5% auto;
+          }
+        }
+        &_spans {
+          text-align: center;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+        }
+      }
+    }
+    &_area {
+      width: 100%;
+      height: 232px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f1f1f4;
+      border: none;
+      margin-top: 15px;
+    }
+  }
+  

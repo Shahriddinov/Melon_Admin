@@ -1,0 +1,29 @@
+.learnCenter{
+
+  &_logos{
+    padding: 20px;
+  }
+  &_search{
+    display: flex;
+    width: 432px;
+    padding: 12px var(--20, 20px);
+    height: 48px;
+    border-radius: 12px;
+    background: #F1F1F4;
+    &_write{
+      width: 100%;
+      outline: none;
+      border: none;
+      background: #F1F1F4;
+      margin-left: 10px;
+    }
+  }
+  &_notification{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+  }
+
+}
