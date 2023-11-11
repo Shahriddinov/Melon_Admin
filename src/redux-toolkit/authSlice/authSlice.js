@@ -17,9 +17,9 @@ const authSlice = createSlice({
       state.token = user.token;
       localStorage.setItem("token", user.token);
 
-      if (user.userProfile) {
-        state.userData = user.userProfile;
-        localStorage.setItem("user", JSON.stringify(user.userProfile));
+      if (user.adminProfile) {
+        state.userData = user.adminProfile;
+        localStorage.setItem("user", JSON.stringify(user.adminProfile));
 
         navigate("/admin/Teacher");
       }

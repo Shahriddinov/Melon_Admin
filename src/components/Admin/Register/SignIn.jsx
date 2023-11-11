@@ -29,7 +29,7 @@ function SignIn(props) {
           <div className="SignIn_form_inputs_text">
             Admin panle Project melon..
           </div>
-          <form onSubmit={(e) => handleSubmit(e)}>
+          <form method="post" onSubmit={(e) => handleSubmit(e)}>
             <div className="SignIn_form_inputs_name">
               <img src={user} alt="user" />
               <input
@@ -54,11 +54,10 @@ function SignIn(props) {
                 className="SignIn_form_inputs_name_style"
                 type="password"
                 name="password"
-                placeholder="Iltimos, parolingizni kiriting    "
+                placeholder="Iltimos, parolingizni kiriting"
               />
             </div>
             <button className="SignIn_form_inputs_send">Tizimga kirish</button>
-
           </form>
           {/* <Link to="/admin/Teacher">
           </Link> */}
