@@ -9,6 +9,8 @@ export const signIn = createAsyncThunk("signIn", async (payload) => {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => res.data)
+    .then((res) => {
+      return res.data
+    })
     .catch((e) => e.response.data);
 });

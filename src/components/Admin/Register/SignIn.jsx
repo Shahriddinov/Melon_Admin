@@ -4,17 +4,20 @@ import Logo from "../../../assets/images/logo.png";
 import user from "../../../assets/images/user.svg";
 import Password from "../../../assets/images/password.svg";
 import Swich from "../../../assets/images/Vector.png";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../../redux-toolkit/authSlice/extraReducer";
 
-function SignIn(props) {
-  const dispatch = useDispatch();
+import { useDispatch } from "react-redux";
+import { signIn } from "../../../redux-toolkit/authSlice/extraReducer";
+import { useLocation } from "../../../hook/use-location";
+
+
+function SignIn() {
+  const dispatch = useDispatch();  
   const [userData, setUserData] = useState({
     username: "",
     password: "",
   });
-  const error = useSelector((state) => state.authSlice.error);
+  
+  useLocation()
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signIn(userData));
