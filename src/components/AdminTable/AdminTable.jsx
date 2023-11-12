@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Space, Table, Tag } from "antd";
-import "./table.scss";
-import Double from "../../../assets/images/doulbe.svg";
+import "./index.scss";
+import Double from "../../assets/images/doulbe.svg";
 import { Link, useLocation } from "react-router-dom";
 const { Column, ColumnGroup } = Table;
 
-export default function Tables() {
+export function Tables() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
   const registerHeader = pathname.split("/")[1];
@@ -35,7 +35,7 @@ export default function Tables() {
                <Link to={registerHeader.includes("admin")} style={{ textDecoration: "none", color: "black" }}>
                  <li >Chatni oching</li>
                </Link>
-               <Link to="/teacher/add" style={{ textDecoration: "none", color: "black" }}>
+               <Link to="teacher/add" style={{ textDecoration: "none", color: "black" }}>
                  <li>O'zgartirish</li>
                </Link>
                <Link to="/#" style={{ textDecoration: "none", color: "black" }}>
@@ -71,7 +71,7 @@ export default function Tables() {
                 <Link to="/#" style={{ textDecoration: "none", color: "black" }}>
                   <li>Chatni oching</li>
                 </Link>
-                <Link to="/teachger/add" style={{ textDecoration: "none", color: "black" }}>
+                <Link to="teachger/add" style={{ textDecoration: "none", color: "black" }}>
                   <li>O'zgartirish</li>
                 </Link>
                 <Link to="/#" style={{ textDecoration: "none", color: "black" }}>
@@ -107,7 +107,7 @@ export default function Tables() {
               <Link to="/#" style={{ textDecoration: "none", color: "black" }}>
                 <li>Chatni oching</li>
               </Link>
-              <Link to="/teacher/add" style={{ textDecoration: "none", color: "black" }}>
+              <Link to="teacher/add" style={{ textDecoration: "none", color: "black" }}>
                 <li>O'zgartirish</li>
               </Link>
               <Link to="/#" style={{ textDecoration: "none", color: "black" }}>

@@ -6,7 +6,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import ChangeUserForma from './ChangeUserForma/ChangeUserForma';
 export default function ChangeUserInfo() {
   return (
-    <AdminLayout>
+    <>
         <div className="add">
         <div className="add_user">
           <LeftOutlined className="add_user_icon" />
@@ -21,6 +21,6 @@ export default function ChangeUserInfo() {
         </div>
       </div>
       <ChangeUserForma/>
-    </AdminLayout>
+    </>
   )
 }
