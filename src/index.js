@@ -1,17 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import "./global.scss";
-import store from "./redux-toolkit/store";
 import { BrowserRouter } from "react-router-dom";
-import App from './App';
+import { Provider } from "react-redux";
+import store from "./redux-toolkit/store";
+import App from './App'
+import { Toaster } from "react-hot-toast";
+import { SearchProvider } from "./context/SearchContext/SearchContext";
+import "./global.scss";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <SearchProvider>
     <BrowserRouter>
       <Provider store={store}>
         <App />
+        <Toaster position="top-right" />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
+  </SearchProvider>
 );

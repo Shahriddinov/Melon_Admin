@@ -1,0 +1,25 @@
+.admin-table{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #EEE;
+    border-collapse: collapse;
+}
+.table-row{
+    text-align: left;
+}
+.table-col{
+    
+    position: relative;
+}
+.admin-table tr{
+    border-bottom: 1px solid #EEE;
+    padding: 20px 0;
+}
+
+.admin-table td, th{
+    padding: 10px 5px;
+}
+
+.table-body{
+    // text-align: center;
+}

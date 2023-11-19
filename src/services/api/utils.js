@@ -1,4 +1,2 @@
-export const adminApi = "http://meelon.uz/admin";
+export const ApiUrls = 'http://admin.meelon.uz'
 
-
-export const LOGIN = `${adminApi}/login`;

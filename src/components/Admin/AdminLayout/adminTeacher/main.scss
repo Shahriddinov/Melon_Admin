@@ -1,0 +1,51 @@
+.table {
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table_teacher {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+}
+
+.table_added {
+    display: inline-flex;
+    padding: 12px 18px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: #0e3f41;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+}
+
+.table-btn {
+    color: #359742;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border-radius: 7px;
+    background-color: #D9F2DD;
+    padding: 6px 12px;
+    border: none;
+}
+
+.teacher-info{
+    display: flex;
+    align-items: center;
+}
+.teacher-avatar{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}

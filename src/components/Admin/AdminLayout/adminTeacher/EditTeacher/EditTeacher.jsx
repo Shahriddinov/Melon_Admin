@@ -4,24 +4,23 @@ import FormControl from "../../../../Inputs/Inputs";
 import ImgIcon from "../../../../../assets/images/Icon pack.svg";
 import { useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import axios from "axios";
-import "./addTeacher.scss";
+import toast from "react-hot-toast";
+import "./editTeacher.scss";
 
-export function AddTeacher() {
+export function EditTeacher() {
   const { id } = useParams('')
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [phone, setPhone] = useState('');
   const [edu, setEdu] = useState('');
+  const [lesson, setLesson] = useState('');
   const avatar = useRef('')
   const [description, setDescription] = useState('');
   const [username, setUsername] = useState('');
-  const [lesson, setLesson] = useState('');
   const [count, setCount] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('firstname', firstname);
@@ -31,36 +30,31 @@ export function AddTeacher() {
     formData.append('student_count', count);
     formData.append('avatar', avatar.current.files[0]);
     formData.append('username', username);
-    formData.append('place_education', edu);
+    formData.append('edu', edu);
     formData.append('lesson_duration', lesson);
-    formData.append('password', password);
-
     try {
-      const res = await axios.post(`http://admin.meelon.uz/teacher`, formData, {
+      const res = await axios.patch(`http://admin.meelon.uz/teacher/${id}`, formData, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
       })
-      toast.success(res?.data?.message)
+      toast.success(res?.data.message)
     } catch (error) {
-      toast.error(error?.response?.data?.message)
+      toast.error(error.message)
     }
+
   }
   return (
-    <form onSubmit={handleSubmit} >
+    <form onSubmit={handleEdit} >
       <div className="add">
         <div className="add_teacher">
-          <Link to={'/admin'} style={{ color: '#000' }}>
-            <LeftOutlined className="add_teacher_icon" /> Ustoz {id}
+          <Link to={'/admin/teacher'} style={{ color: '#000' }}>
+            <LeftOutlined className="add_teacher_icon" /> Ustoz
           </Link>
         </div>
         <div>
-          {/* <Link to="/admin"> */}
           <button type="reset" className="add_cansel">Bekor qilish</button>
-          {/* </Link> */}
-          {/* <Link to="teacher/add"> */}
           <button type="submit" className="add_added">Tastiqlangan</button>
-          {/* </Link> */}
         </div>
       </div>
       <div className="TeacherForma" >
@@ -109,7 +103,7 @@ export function AddTeacher() {
               placeholder={"O’qigan joyingiz nomi"}
               id={"learnplace"}
               label={"O’qigan joyingiz nomi"}
-              name="place_education"
+              name="edu"
               type={'text'}
               min='3'
               onChange={(e) => setEdu(e.target.value)}
@@ -124,23 +118,11 @@ export function AddTeacher() {
             ></FormControl>
             <FormControl
               type="text"
-              placeholder={"5 - oy"}
-              id={"text"}
-              label={"Dars davomiyligi"}
+              placeholder={"Dars davomiyligi"}
+              id={"lesson-duration"}
+              label={"Qancha shogirt chiqargane siz"}
               name="lesson_duration"
-              min='6'
-              max='8'
               onChange={(e) => setLesson(e.target.value)}
-            ></FormControl>
-            <FormControl
-              type="password"
-              placeholder={"5 - oy"}
-              id={"password"}
-              label={"Password"}
-              name="password"
-              min='6'
-              max='8'
-              onChange={(e) => setPassword(e.target.value)}
             ></FormControl>
           </div>
           <div className="TeacherForma_form_inputs">
