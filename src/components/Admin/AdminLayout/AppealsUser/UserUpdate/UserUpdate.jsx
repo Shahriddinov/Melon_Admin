@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { request } from '../../../../../services/api/request';
 import "./changeusrInfo.scss";
 
-export function ChangeUserInfo() {
+export function UserUpdate() {
   const { id } = useParams();
 
   const items = [
@@ -22,10 +22,9 @@ export function ChangeUserInfo() {
     },
     {
       label: "3rd menu item",
-      key: "3",
+      key: "2",
     },
   ];
-
   const [phone, setPhone] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');

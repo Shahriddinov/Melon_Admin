@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { LeftOutlined } from '@ant-design/icons'
 import FormControl from "../../../../Inputs/Inputs"
 import ImgIcon from "../../../../../assets/images/Icon pack.svg"
 import axios from 'axios'
+import "./main.scss"
 import toast from 'react-hot-toast'
-import "./addLearnCenter.scss"
 
-export function AddLearnCenter() {
+export function EditCenter() {
+  const { id } = useParams('');
   const [education_name, setEdu] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
@@ -17,8 +18,9 @@ export function AddLearnCenter() {
   const image = useRef('')
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const token = localStorage.getItem('token')
 
-  const handleSubmit = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('education_name', education_name);
@@ -30,20 +32,23 @@ export function AddLearnCenter() {
     formData.append('username', username);
     formData.append('password', password);
     formData.append('image', image.current.files[0]);
+
     try {
-      const res = await axios.post('http://admin.meelon.uz/edu', formData, {
+      const res = await axios.patch(`http://admin.meelon.uz/edu/${id}`, formData, {
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
+          "Authorization": `Bearer ${token}`
         }
       })
-      toast.success(res?.data?.message)
+      console.log(res);
+      toast.success(res?.data.message)
     } catch (error) {
+      console.log(error);
       toast.error(error?.response?.data?.message)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleEdit}>
       <div className="add">
         <div className="add_LearnCenter">
           <NavLink to={'/center'} style={{ color: '#000' }}>
@@ -77,7 +82,7 @@ export function AddLearnCenter() {
               id={"Username"}
               type="text"
               label={"Username"}
-              style={{ border: '1px solid red' }}
+              style={{ border: '1px solid red'}}
               onChange={(e) => setUsername(e.target.value)}
             ></FormControl>
             <FormControl

@@ -24,9 +24,12 @@ const authSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(user.adminProfile));
       }
     },
+    logout: (state) => {
+      state.token = null;
+      localStorage.removeItem('token');
+    } 
   },
   extraReducers: (build) => {
-    console.log(build);
     build
       .addCase(signIn.pending, (state) => {
         state.loginLoading = true;
@@ -34,18 +37,18 @@ const authSlice = createSlice({
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.loginLoading = false;
-        state.token = action.payload.data.access_token;
-        console.log(action.payload.data);
-        localStorage.setItem("token", action.payload.data.access_token)
-        if (action.payload.message) {
-          state.error = action.payload.message;
+        if (action.payload?.access_token) {
+          state.token = action.payload?.access_token;
+          localStorage.setItem("token", action.payload?.access_token)
+        }if(action.payload?.response?.data.status === 400) {
+          state.error = action.payload?.response?.data.message 
         }
       })
       .addCase(signIn.rejected, (state, action) => {
         state.loginLoading = false;
-        state.error = action.message;
+        state.error = action.payload?.response?.data.message;
       });
   }
 });
-export const { removeToken, loginUser, changeStatus } = authSlice.actions;
+export const { removeToken, loginUser, changeStatus, logout } = authSlice.actions;
 export default authSlice.reducer;

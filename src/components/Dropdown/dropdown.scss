@@ -1,0 +1,34 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 3px 9px 24px 0px rgba(0, 0, 0, 0.15);
+    list-style-type: none;
+    margin: 0;
+    position: absolute;
+    line-height: 26px;
+    top: 25px;
+    right: calc(2%);
+    bottom: -110px;
+    z-index: 100;
+    text-align: left;
+}
+
+.show {
+    display: none;
+}
+
+.dropdown-link {
+    color: #121212;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.drop-link:hover{
+    color: red;
+}
