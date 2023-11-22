@@ -8,6 +8,7 @@ import userAvatar from "../../../../../assets/images/user-avatar.svg";
 import Skeleton from 'react-loading-skeleton'
 import { Pagination } from "antd";
 import "./allUser.scss";
+import toast from "react-hot-toast";
 
 export function AllUser() {
   const [active, setActive] = useState(false);
@@ -19,17 +20,21 @@ export function AllUser() {
 
   useEffect(() => {
     request.get('/user/all')
-    .then(res => {
-      setData(res?.data); 
-      setLoading(false);
-    })
-    .catch(error => console.log(error))
+      .then(res => {
+        setData(res?.data);
+        setLoading(false);
+      })
+      .catch(error => console.log(error))
   }, []);
 
   // const handlePageChange = (page) => {
   //   setCurrentPage(page);
   //   setLoading(true)
   // };
+  const handleDelete =()=>{
+     toast.success(`Delete funksiyasi qo'shilmagan`)
+     setActive(false)
+  }
   if (loading) return <Skeleton count={5} height={30} />
   return (
     <>
@@ -48,7 +53,8 @@ export function AllUser() {
                 <td>{item.id}</td>
                 <td className="user-info">
                   <img className="user-avatar" src={userAvatar} alt='user avatar' />
-                  {item.firstname} {item.lastname}
+                  <p>{item.firstname}</p>
+                  <p> {item.lastname}</p>
                 </td>
                 <td>{item.createdAt}</td>
                 <td>
@@ -64,6 +70,7 @@ export function AllUser() {
                       active={active}
                       pathChat='chat'
                       pathVideo='video'
+                      handleDelete={handleDelete}
                       pathEdit={`add/${item.id}`}
                     />
                   }
@@ -72,7 +79,7 @@ export function AllUser() {
             })
           }
         </Table>
-        <Pagination className="pagination"  total={data.length} />
+        <Pagination className="pagination" total={data.length} />
       </div>
     </>
   );

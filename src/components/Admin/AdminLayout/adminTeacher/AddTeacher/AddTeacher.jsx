@@ -4,8 +4,7 @@ import FormControl from "../../../../Inputs/Inputs";
 import ImgIcon from "../../../../../assets/images/Icon pack.svg";
 import { useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
-import axios from "axios";
+import { request } from "../../../../../services/api/request";
 import "./addTeacher.scss";
 
 export function AddTeacher() {
@@ -34,16 +33,10 @@ export function AddTeacher() {
     formData.append('place_education', edu);
     formData.append('lesson_duration', lesson);
     formData.append('password', password);
-
     try {
-      const res = await axios.post(`http://admin.meelon.uz/teacher`, formData, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      toast.success(res?.data?.message)
+      await request.post(`/teacher`, formData)
     } catch (error) {
-      toast.error(error?.response?.data?.message)
+      console.log(error);
     }
   }
   return (
