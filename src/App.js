@@ -17,7 +17,6 @@ const Login = lazy(() => import("./Login/Login"));
 
 export default function App() {
   const { token } = useSelector(state => state.authSlice);
-  console.log(token);
   return <Suspense fallback={<Spinner position={'full'} />}>
     <Routes>
       <Route path="/" element={<Login />} />

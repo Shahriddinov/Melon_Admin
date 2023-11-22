@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { LeftOutlined } from '@ant-design/icons'
 import FormControl from "../../../../Inputs/Inputs"
 import ImgIcon from "../../../../../assets/images/Icon pack.svg"
-import axios from 'axios'
-import toast from 'react-hot-toast'
+import { request } from '../../../../../services/api/request'
 import "./addLearnCenter.scss"
 
 export function AddLearnCenter() {
@@ -31,14 +30,9 @@ export function AddLearnCenter() {
     formData.append('password', password);
     formData.append('image', image.current.files[0]);
     try {
-      const res = await axios.post('http://admin.meelon.uz/edu', formData, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      toast.success(res?.data?.message)
+      await request.post('/edu', formData);
     } catch (error) {
-      toast.error(error?.response?.data?.message)
+      console.log(error);
     }
   }
 

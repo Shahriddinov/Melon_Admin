@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LeftOutlined } from "@ant-design/icons";
 import FormControl from "../../../../Inputs/Inputs";
 import ImgIcon from "../../../../../assets/images/Icon pack.svg";
 import { useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
 import "./editTeacher.scss";
+import { request } from "../../../../../services/api/request";
 
 export function EditTeacher() {
   const { id } = useParams('')
@@ -33,14 +32,9 @@ export function EditTeacher() {
     formData.append('edu', edu);
     formData.append('lesson_duration', lesson);
     try {
-      const res = await axios.patch(`http://admin.meelon.uz/teacher/${id}`, formData, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-      toast.success(res?.data.message)
+      await request.patch(`/teacher/${id}`, formData)
     } catch (error) {
-      toast.error(error.message)
+      console.log(error);
     }
 
   }

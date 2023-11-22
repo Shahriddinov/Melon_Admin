@@ -30,6 +30,7 @@ export function AdminTeacher() {
       await request.delete(`/teacher/${id}`)
       setCount(count + 1)
       setLoading(true)
+      setActive(false)
     } catch (error) {
       console.log(error);
     }
